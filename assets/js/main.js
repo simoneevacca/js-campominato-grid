@@ -3,8 +3,13 @@
 // Ci saranno quindi 10 caselle per ognuna delle 10 righe.
 // Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro ed emetto un messaggio in console con il numero della cella cliccata.
 
-
+const play = document.getElementById('play');
 // al click del bottone...
+play.addEventListener('click', function()  {
+    console.log('play work');
+
+}
+)
 
 // genero le 100 celle all'interno della griglia
 
