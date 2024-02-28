@@ -13,11 +13,18 @@ const difficult = document.getElementById('difficult');
 
 // al click del bottone...
 play.addEventListener('click', function() {
+    console.log(difficult.value);
 
     if(difficult.value === 'easy'){
         cellQty = 49;
-    } else if (difficult.value = 'medium') {
+        grid.style.width = "700px";
+    } else if (difficult.value === 'medium') {
         cellQty = 81;
+        grid.style.width = "900px";
+        
+    } else if (difficult.value === 'hard') {
+        cellQty = 100;
+        grid.style.width = "1000px";
     }
     
     // dichiaro una variabile globale da utilizzare nei cicli a seguire
