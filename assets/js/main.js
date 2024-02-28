@@ -14,7 +14,9 @@ const grid = document.getElementById('grid');
 // al click del bottone...
 play.addEventListener('click', function()  {
     
+    // dichiaro una variabile globale da utilizzare nei cicli a seguire
     let cellEl;
+
     // genero le 100 celle all'interno della griglia
     for (let i = 1; i < cellQty +1; i++) {
         // assegno un numero ad ogni cella
@@ -23,7 +25,7 @@ play.addEventListener('click', function()  {
 
         // creo un array con tutti gli elementi all'inerno
         cellEl = document.querySelectorAll('.cell')
-        console.log(cellEl);
+       
       
     }
 
@@ -31,23 +33,17 @@ play.addEventListener('click', function()  {
     // scorro all'interno dell'array
     for (let i = 0; i < cellEl.length; i++) {
         const element = cellEl[i];
-        console.log(element);
+        
 
         // al click della singola cella gli asegno una classe per dare il colore di sfondo
         element.addEventListener('click', function(){
-
             element.classList.toggle('click-cell')
-        })
-        
+
+            // e stampare il numero in console
+            console.log(element.innerHTML);
+        })    
     }
 
-    
 }
 )
 
-// cellEl.addEventListener('click', function() {
-//     console.log('ciaoo');
-
-// }
-// )
-// e stampare il numero in console
