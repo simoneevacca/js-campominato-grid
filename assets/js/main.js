@@ -4,15 +4,21 @@
 // Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro ed emetto un messaggio in console con il numero della cella cliccata.
 
 
-let cellQty = 100;
+let cellQty;
 const play = document.getElementById('play');
 const grid = document.getElementById('grid');
-
+const difficult = document.getElementById('difficult');
 
 
 
 // al click del bottone...
-play.addEventListener('click', function()  {
+play.addEventListener('click', function() {
+
+    if(difficult.value === 'easy'){
+        cellQty = 49;
+    } else if (difficult.value = 'medium') {
+        cellQty = 81;
+    }
     
     // dichiaro una variabile globale da utilizzare nei cicli a seguire
     let cellEl;
@@ -26,14 +32,12 @@ play.addEventListener('click', function()  {
         // creo un array con tutti gli elementi all'inerno
         cellEl = document.querySelectorAll('.cell')
        
-      
     }
 
     
     // scorro all'interno dell'array
     for (let i = 0; i < cellEl.length; i++) {
         const element = cellEl[i];
-        
 
         // al click della singola cella gli asegno una classe per dare il colore di sfondo
         element.addEventListener('click', function(){
