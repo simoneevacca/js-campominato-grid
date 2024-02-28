@@ -7,20 +7,23 @@
 let cellQty = 100;
 const play = document.getElementById('play');
 const grid = document.getElementById('grid');
-
+const cellsArray = [];
 
 // al click del bottone...
 play.addEventListener('click', function()  {
-    for (let i = 0; i < cellQty; i++) {
-        grid.insertAdjacentHTML('beforeend', `<div class="cell"></div>`);
+    
+    
+    // genero le 100 celle all'interno della griglia
+    for (let i = 1; i < cellQty +1; i++) {
+        // assegno un numero ad ogni cella
+        const cell = `<div class="cell">${i}</div>`
+        grid.insertAdjacentHTML('beforeend',cell);
+        
     }
-
 }
 )
 
-// genero le 100 celle all'interno della griglia
 
-// assegno un numero ad ogni cella
 
 // al click della singola cella gli asegno una classe per dare il colore di sfondo
 // e stampare il numero in console
