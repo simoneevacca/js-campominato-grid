@@ -3,13 +3,17 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+body {
+    background-color: darkgray;
+}
 header {
     height: 50px;
     border-bottom: 2px solid black;
     margin-bottom: 80px;
 }
 
-.grid {
+#grid {
     display: flex;
     flex-wrap: wrap;
     width: 1000px;
