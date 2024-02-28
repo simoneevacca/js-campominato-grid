@@ -13,6 +13,8 @@ const difficult = document.getElementById('difficult');
 
 // al click del bottone...
 play.addEventListener('click', function() {
+    
+
     console.log(difficult.value);
 
     if(difficult.value === 'easy'){
@@ -29,12 +31,13 @@ play.addEventListener('click', function() {
     
     // dichiaro una variabile globale da utilizzare nei cicli a seguire
     let cellEl;
-
+    
     // genero le 100 celle all'interno della griglia
+    grid.innerHTML = "";
     for (let i = 1; i < cellQty +1; i++) {
         // assegno un numero ad ogni cella
         const cell = `<div class="cell">${i}</div>`;
-        grid.insertAdjacentHTML('beforeend',cell);
+        grid.insertAdjacentHTML('beforeend', cell);
 
         // creo un array con tutti gli elementi all'inerno
         cellEl = document.querySelectorAll('.cell')
