@@ -16,32 +16,31 @@ const play = document.getElementById('play');
 const grid = document.getElementById('grid');
 const difficult = document.getElementById('difficult');
 const mushroomsArray = [];
+let winCell = 0;
 
 
 
 
 // al click del bottone...
-play.addEventListener('click', function() {
-    
+play.addEventListener('click', function () {
 
-    console.log(difficult.value);
 
-    if(difficult.value === 'easy'){
+    if (difficult.value === 'easy') {
         cellQty = 49;
         grid.style.width = "700px";
     } else if (difficult.value === 'medium') {
         cellQty = 81;
         grid.style.width = "900px";
-        
+
     } else if (difficult.value === 'hard') {
         cellQty = 100;
         grid.style.width = "1000px";
     }
-    
+
     // dichiaro una variabile globale da utilizzare nei cicli a seguire
     let cellEl;
     let numb = Number(0);
-    
+
     // genero le 100 celle all'interno della griglia
     grid.innerHTML = "";
     for (let i = 0; i < cellQty; i++) {
@@ -57,36 +56,57 @@ play.addEventListener('click', function() {
         while (mushroomsArray.length < 16) {
             const mushroomsNumber = randomNumber(cellQty);
             // se il numero generato non è già incluso nell'array lo aggiungo
-            if (!mushroomsArray.includes (mushroomsNumber)) {
-                mushroomsArray.push (mushroomsNumber)
-                
+            if (!mushroomsArray.includes(mushroomsNumber)) {
+                mushroomsArray.push(mushroomsNumber)
+
             }
         }
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
         const elementCell = cellEl[i];
-        console.log(Number(elementCell.innerHTML));
-   
+
         // al click della singola cella gli asegno una classe per dare il colore di sfondo
-        elementCell.addEventListener('click', function(){
+        elementCell.addEventListener('click', function myFunction() {
+            winCell++
+            console.log(winCell);
+            const score = document.querySelector('.score')
+            score.innerHTML = 'score: ' + winCell
+            if (winCell == cellQty - 16) {
+                alert (`Hai vinto`)
+                elementCell.removeEventListener("click", myFunction());
+            }
+
             elementCell.classList.add('click-cell')
             if (mushroomsArray.includes(Number(elementCell.innerHTML))) {
                 elementCell.style.backgroundColor = "orange";
+                elementCell.style.fontSize = "xx-large";
+                winCell--
                 elementCell.innerHTML = '🍄'
+                console.log('HAI PERSO');
+                alert (`Hai perso. Il tuo punteggio: ${winCell}/${cellQty}`)
+                score.innerHTML = `score:  ${winCell} `
+                elementCell.removeEventListener("click", myFunction());
+
+               
             }
-            
+
             // e stampare il numero in console
-            console.log(elementCell.innerHTML);
             
-        })    
-        
-        
-        
+
+        })
+
+
+        if (winCell == 5) {
+            elementCell.removeEventListener('click', )
+        }
+
     }
+    // console.log(winCell);
+
     
     console.log(mushroomsArray);
 }
@@ -99,7 +119,7 @@ play.addEventListener('click', function() {
  * @param {number} x 
  * @returns {number}
  */
- function randomNumber(x) {
+function randomNumber(x) {
     const result = Math.floor(Math.random() * x) + 1;
     return result
 }
