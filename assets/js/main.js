@@ -40,12 +40,14 @@ play.addEventListener('click', function() {
     
     // dichiaro una variabile globale da utilizzare nei cicli a seguire
     let cellEl;
+    let numb = Number(0);
     
     // genero le 100 celle all'interno della griglia
     grid.innerHTML = "";
-    for (let i = 1; i < cellQty +1; i++) {
+    for (let i = 0; i < cellQty; i++) {
         // assegno un numero ad ogni cella
-        const cell = `<div class="cell">${i}</div>`;
+        numb++
+        const cell = `<div class="cell">${numb}</div>`;
         grid.insertAdjacentHTML('beforeend', cell);
 
         // creo un array con tutti gli elementi all'inerno
@@ -53,30 +55,40 @@ play.addEventListener('click', function() {
 
         // genero 16 numeri casuali fino al riempimento dell'array
         while (mushroomsArray.length < 16) {
-            const mushroomsNumber = randomNumber(16);
+            const mushroomsNumber = randomNumber(cellQty);
             // se il numero generato non è già incluso nell'array lo aggiungo
             if (!mushroomsArray.includes (mushroomsNumber)) {
                 mushroomsArray.push (mushroomsNumber)
-                console.log(mushroomsArray);
+                
             }
         }
-       
-    }
-
-    
-    // scorro all'interno dell'array
-    for (let i = 0; i < cellEl.length; i++) {
-        const element = cellEl[i];
-
+        
+        
+        
+        
+        
+        
+        const elementCell = cellEl[i];
+        console.log(Number(elementCell.innerHTML));
+   
         // al click della singola cella gli asegno una classe per dare il colore di sfondo
-        element.addEventListener('click', function(){
-            element.classList.toggle('click-cell')
-
+        elementCell.addEventListener('click', function(){
+            elementCell.classList.add('click-cell')
+            if (mushroomsArray.includes(Number(elementCell.innerHTML))) {
+                elementCell.style.backgroundColor = "orange";
+                elementCell.innerHTML = '🍄'
+            }
+            
             // e stampare il numero in console
-            console.log(element.innerHTML);
+            console.log(elementCell.innerHTML);
+            
         })    
+        
+        
+        
     }
-
+    
+    console.log(mushroomsArray);
 }
 )
 
