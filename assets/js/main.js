@@ -3,12 +3,20 @@
 // Ci saranno quindi 10 caselle per ognuna delle 10 righe.
 // Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro ed emetto un messaggio in console con il numero della cella cliccata.
 
+// Ilcomputer deve generare 16 numeri casuali nello stesso range della difficoltà prescelta: i funghi magici.
+// In seguito l'utente clicca su una cella: se il numero è presente nella lista dei numeri generati
+// - abbiamo calpestato una fungo
+// - la cella si colora di rosso e la partita termina.
+// Altrimenti la cella cliccata si colora di azzurro e l'utente può continuare a cliccare sulle altre celle.
+// La partita termina quando il giocatore clicca su una fungo o quando raggiunge il numero massimo possibile di numeri consentiti (ovvero quando ha rivelato tutte le celle che non sono funghi).
+// Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha cliccato su una cella che non era una fungo.
 
 let cellQty;
 const play = document.getElementById('play');
 const grid = document.getElementById('grid');
 const difficult = document.getElementById('difficult');
 const mushroomsArray = [];
+
 
 
 
@@ -42,6 +50,16 @@ play.addEventListener('click', function() {
 
         // creo un array con tutti gli elementi all'inerno
         cellEl = document.querySelectorAll('.cell')
+
+        // genero 16 numeri casuali fino al riempimento dell'array
+        while (mushroomsArray.length < 16) {
+            const mushroomsNumber = randomNumber(16);
+            // se il numero generato non è già incluso nell'array lo aggiungo
+            if (!mushroomsArray.includes (mushroomsNumber)) {
+                mushroomsArray.push (mushroomsNumber)
+                console.log(mushroomsArray);
+            }
+        }
        
     }
 
