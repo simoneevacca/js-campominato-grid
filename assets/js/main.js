@@ -77,7 +77,6 @@ play.addEventListener('click', function () {
             score.innerHTML = 'score: ' + winCell
             if (winCell == cellQty - 16) {
                 alert (`Hai vinto`)
-                elementCell.removeEventListener("click", myFunction());
             }
 
             elementCell.classList.add('click-cell')
