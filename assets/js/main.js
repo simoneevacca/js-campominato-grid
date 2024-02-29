@@ -25,6 +25,8 @@ let winCell = 0;
 play.addEventListener('click', function () {
 
 
+
+
     if (difficult.value === 'easy') {
         cellQty = 49;
         grid.style.width = "700px";
@@ -63,10 +65,6 @@ play.addEventListener('click', function () {
         }
 
 
-
-
-
-
         const elementCell = cellEl[i];
 
         // al click della singola cella gli asegno una classe per dare il colore di sfondo
@@ -80,6 +78,9 @@ play.addEventListener('click', function () {
             }
 
             elementCell.classList.add('click-cell')
+
+
+            // se clicco una casella con il fungo
             if (mushroomsArray.includes(Number(elementCell.innerHTML))) {
                 elementCell.style.backgroundColor = "orange";
                 elementCell.style.fontSize = "xx-large";
@@ -88,8 +89,8 @@ play.addEventListener('click', function () {
                 console.log('HAI PERSO');
                 alert (`Hai perso. Il tuo punteggio: ${winCell}/${cellQty}`)
                 score.innerHTML = `score:  ${winCell} `
-                elementCell.removeEventListener("click", myFunction());
-
+                // elementCell.removeEventListener("click", myFunction()); //
+                
                
             }
 
@@ -99,12 +100,7 @@ play.addEventListener('click', function () {
         })
 
 
-        if (winCell == 5) {
-            elementCell.removeEventListener('click', )
-        }
-
     }
-    // console.log(winCell);
 
     
     console.log(mushroomsArray);
@@ -122,3 +118,5 @@ function randomNumber(x) {
     const result = Math.floor(Math.random() * x) + 1;
     return result
 }
+
+
