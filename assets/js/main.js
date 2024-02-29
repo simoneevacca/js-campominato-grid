@@ -8,6 +8,7 @@ let cellQty;
 const play = document.getElementById('play');
 const grid = document.getElementById('grid');
 const difficult = document.getElementById('difficult');
+const mushroomsArray = [];
 
 
 
@@ -61,3 +62,14 @@ play.addEventListener('click', function() {
 }
 )
 
+
+
+/**
+ genera un numero casuale da 1 a x* 
+ * @param {number} x 
+ * @returns {number}
+ */
+ function randomNumber(x) {
+    const result = Math.floor(Math.random() * x) + 1;
+    return result
+}
