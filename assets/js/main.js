@@ -18,6 +18,7 @@ const difficult = document.getElementById('difficult');
 const mushroomsArray = [];
 let win = true;
 let elementCell;
+let cellEl;
 
 
 
@@ -42,7 +43,6 @@ play.addEventListener('click', function () {
     }
 
     // dichiaro una variabile globale da utilizzare nei cicli a seguire
-    let cellEl;
 
     // genero le 100 celle all'interno della griglia
     grid.innerHTML = "";
@@ -69,7 +69,7 @@ play.addEventListener('click', function () {
 
         // al click della singola cella gli asegno una classe per dare il colore di sfondo
         
-        elementCell.addEventListener('click', clickCell)
+        cellEl[i].addEventListener('click', clickCell)
        
 
     }
@@ -121,14 +121,15 @@ function clickCell () {
         alert (`Hai perso. Il tuo punteggio: ${winCell}/${cellQty}`)
         score.innerHTML = `score:  ${winCell} `
         win = false;
+        for (let i = 0; i < cellQty; i++) {
+            
+            
+           cellEl[i].removeEventListener('click', clickCell)
+           
+        }
         
         
     }
-    
-    if(win == false) {
-       this.removeEventListener('click', clickCell)
-
-   }
-        
+     
     
 }
