@@ -28,8 +28,6 @@ let winCell = 0;
 play.addEventListener('click', function () {
 
 
-
-
     if (difficult.value === 'easy') {
         cellQty = 49;
         grid.style.width = "700px";
@@ -41,6 +39,8 @@ play.addEventListener('click', function () {
         cellQty = 100;
         grid.style.width = "1000px";
     }
+
+
     // reset number in array
     mushroomsArray = []
     //reset score
@@ -51,11 +51,11 @@ play.addEventListener('click', function () {
     grid.innerHTML = "";
     for (let i = 0; i < cellQty; i++) {
 
-        // assegno un numero ad ogni cella
+        // assegno un numero ad ogni cella e la inserisco in HTML
         const cell = `<div class="cell">${i + 1}</div>`;
         grid.insertAdjacentHTML('beforeend', cell);
 
-        // creo un array con tutti gli elementi all'inerno
+        // creo un array con tutte le celle all'inerno
         cellEl = document.querySelectorAll('.cell')
 
         // genero 16 numeri casuali fino al riempimento dell'array
@@ -69,20 +69,18 @@ play.addEventListener('click', function () {
         }
 
 
-        // al click della singola cella gli asegno una classe per dare il colore di sfondo
-
+        // al click della singola cella eseguo la funzione clickCell
         cellEl[i].addEventListener('click', clickCell)
 
 
     }
-
-
-    mushroomsArray.sort((a, b) => a - b);
-    console.log(mushroomsArray);
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////// DISATTIVARE il commento nelle due righe successive per vedere in console i numeri con il fungo ///////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // mushroomsArray.sort((a, b) => a - b);
+    // console.log(mushroomsArray);
 }
 )
-
-
 
 /**
  genera un numero casuale da 1 a x* 
@@ -97,13 +95,15 @@ function randomNumber(x) {
 
 function clickCell() {
 
-
+    // al click di una cella...
+    // incremento il contatore del punteggio e lo stampo nella dom
     winCell++
     const score = document.querySelector('.score')
     score.innerHTML = 'score: ' + winCell
-
+    //aggiungo la classe per modificare il colore
     this.classList.add('click-cell')
 
+    // condizione di vincita
     if (winCell == cellQty - 16) {
         alert(`Hai vinto`)
     }
@@ -117,17 +117,13 @@ function clickCell() {
         winCell--
         this.innerHTML = '🍄'
         console.log('HAI PERSO');
-        alert(`Hai perso. Il tuo punteggio: ${winCell}/${cellQty-16}`)
+        alert(`Hai perso. Il tuo punteggio: ${winCell}/${cellQty - 16}`)
         score.innerHTML = `score:  ${winCell} `
-        
+
         for (let i = 0; i < cellQty; i++) {
 
             cellEl[i].removeEventListener('click', clickCell)
 
         }
-
-
     }
-
-
 }
