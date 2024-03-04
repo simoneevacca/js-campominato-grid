@@ -34,8 +34,10 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 2;
 }
 
 .click-cell {
     background-color: green;
 }
+
