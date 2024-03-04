@@ -16,9 +16,9 @@ const play = document.getElementById('play');
 const grid = document.getElementById('grid');
 const difficult = document.getElementById('difficult');
 const mushroomsArray = [];
-let win;
+let win = true;
+let elementCell;
 
-// let winCell = 0;
 
 
 
@@ -65,22 +65,21 @@ play.addEventListener('click', function () {
         }
 
 
-        const elementCell = cellEl[i];
+        elementCell = cellEl[i];
 
         // al click della singola cella gli asegno una classe per dare il colore di sfondo
-        elementCell.addEventListener('click', clickCell)
         
-        if (win == false) {
-            elementCell.removeEventListener('click', clickCell)
-        }
-
+        elementCell.addEventListener('click', clickCell)
+       
 
     }
+   
 
     
     console.log(mushroomsArray);
 }
 )
+console.log(win);
 
 
 
@@ -122,6 +121,14 @@ function clickCell () {
         alert (`Hai perso. Il tuo punteggio: ${winCell}/${cellQty}`)
         score.innerHTML = `score:  ${winCell} `
         win = false;
-        console.log(win);
+        
+        
     }
+    
+    if(win == false) {
+       this.removeEventListener('click', clickCell)
+
+   }
+        
+    
 }
