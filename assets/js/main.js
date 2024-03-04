@@ -15,10 +15,10 @@ let cellQty;
 const play = document.getElementById('play');
 const grid = document.getElementById('grid');
 const difficult = document.getElementById('difficult');
-const mushroomsArray = [];
-let win = true;
-let elementCell;
+let mushroomsArray = [];
 let cellEl;
+let winCell = 0;
+
 
 
 
@@ -41,14 +41,18 @@ play.addEventListener('click', function () {
         cellQty = 100;
         grid.style.width = "1000px";
     }
-
+    // reset number in array
+    mushroomsArray = []
+    //reset score
+    winCell = 0;
     // dichiaro una variabile globale da utilizzare nei cicli a seguire
 
     // genero le 100 celle all'interno della griglia
     grid.innerHTML = "";
     for (let i = 0; i < cellQty; i++) {
+
         // assegno un numero ad ogni cella
-        const cell = `<div class="cell">${i +1}</div>`;
+        const cell = `<div class="cell">${i + 1}</div>`;
         grid.insertAdjacentHTML('beforeend', cell);
 
         // creo un array con tutti gli elementi all'inerno
@@ -65,21 +69,18 @@ play.addEventListener('click', function () {
         }
 
 
-        elementCell = cellEl[i];
-
         // al click della singola cella gli asegno una classe per dare il colore di sfondo
-        
+
         cellEl[i].addEventListener('click', clickCell)
-       
+
 
     }
-   
 
-    
+
+    mushroomsArray.sort((a, b) => a - b);
     console.log(mushroomsArray);
 }
 )
-console.log(win);
 
 
 
@@ -94,19 +95,17 @@ function randomNumber(x) {
 }
 
 
-function clickCell () {
-    let winCell = 0;
-    
+function clickCell() {
+
 
     winCell++
-    console.log(winCell);
     const score = document.querySelector('.score')
     score.innerHTML = 'score: ' + winCell
 
     this.classList.add('click-cell')
-    
+
     if (winCell == cellQty - 16) {
-        alert (`Hai vinto`)
+        alert(`Hai vinto`)
     }
 
 
@@ -118,18 +117,17 @@ function clickCell () {
         winCell--
         this.innerHTML = '🍄'
         console.log('HAI PERSO');
-        alert (`Hai perso. Il tuo punteggio: ${winCell}/${cellQty}`)
+        alert(`Hai perso. Il tuo punteggio: ${winCell}/${cellQty-16}`)
         score.innerHTML = `score:  ${winCell} `
-        win = false;
+        
         for (let i = 0; i < cellQty; i++) {
-            
-            
-           cellEl[i].removeEventListener('click', clickCell)
-           
+
+            cellEl[i].removeEventListener('click', clickCell)
+
         }
-        
-        
+
+
     }
-     
-    
+
+
 }
